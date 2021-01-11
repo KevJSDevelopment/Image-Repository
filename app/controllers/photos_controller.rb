@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
 
     def search
-        
+        photos = Photos.where("name LIKE '%#{params[:search]}%'")
     end
 
     def create
