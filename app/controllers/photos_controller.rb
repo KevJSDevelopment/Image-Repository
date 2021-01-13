@@ -19,6 +19,17 @@ class PhotosController < ApplicationController
 
     def create
         photo = Photo.new(image: params[:image])
+        if photo.save
+            render json: {
+                auth: true,
+                message: "Your photos have successfully been saved"
+            }
+        else    
+            render json: {
+                auth: false,
+                message: photo.errors.full_messages
+            }
+        end
     end
 
     def show
