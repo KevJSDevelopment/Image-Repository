@@ -34,6 +34,19 @@ class PhotosController < ApplicationController
 
     def show
         photo = Photo.find(params[:id])
+
+        if photo
+            render json: {
+                photo: photo,
+                auth: true,
+                message: "Photo found"
+            }
+        else    
+            render json: {
+                auth: false,
+                message: photo.errors.full_messages
+            }
+        end
     end
 
 end
